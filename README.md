@@ -61,13 +61,6 @@ class HourlyJob < ApplicationJob
   end
 end
 ```
-
-#### Notes on tasks
-Think of tasks as methods with exception protection and ordering.
-Tasks are guaranteed to run in the order you register them.
-They are also guaranteed to run even if a previous task encountered an exception.
-This gives you control over creating new tasks without having to worry about breaking old ones.
-
 Finally you will schedule your jobs using the [Whenever](https://github.com/javan/whenever]) gem.
 Below is an example config/schedule.rb that also forces your jobs to run at a low priority.
 Running crons at a low priority is recommended when your server has other roles (web, app, db, etc).
@@ -79,6 +72,12 @@ every 1.hour do
   runner('Cron::Hourly.new.run')
 end
 ```
+
+## Tasks
+Think of tasks as methods with exception protection and ordering.
+Tasks are guaranteed to run in the order you register them.
+They are also guaranteed to run even if a previous task encountered an exception.
+This gives you control over creating new tasks without having to worry about breaking old ones.
 
 ## Development
 
