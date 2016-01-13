@@ -30,6 +30,7 @@ This is the class that all of your custom crons should inherit from.
 ```ruby
 class ApplicationJob < CronHelper::Job
 end
+```
 
 Next you will create your app specific cron classes.
 The idea is to pick logical names that relate to how they are going to be scheduled.
@@ -54,6 +55,7 @@ class HourlyJob < ApplicationJob
     # I am a silent champion of a task.
   end
 end
+```
 
 Finally you will schedule your jobs using the [https://github.com/javan/whenever](Whenever) gem.
 Below is an example config/schedule.rb that also forces your jobs to run at a low priority.
@@ -65,7 +67,7 @@ job_type :runner,  "cd :path && nice -n 20 script/rails runner -e :environment '
 every 1.hour do
   runner('Cron::Hourly.new.run')
 end
-end
+```
 
 ## Development
 
