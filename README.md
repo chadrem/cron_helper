@@ -61,7 +61,7 @@ class HourlyJob < ApplicationJob
   end
 end
 ```
-Finally you will schedule your jobs using the [Whenever](https://github.com/javan/whenever]) gem.
+Finally you will schedule your jobs using the [Whenever](https://github.com/javan/whenever) gem.
 Below is an example config/schedule.rb that also forces your jobs to run at a low priority.
 Running jobs at a low priority is recommended when your server has other roles (web, app, db, etc).
 
