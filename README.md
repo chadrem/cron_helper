@@ -1,6 +1,6 @@
 # CronHelper
 
-The Cron Helper gem is designed to add a few additional features to cron jobs created with the [https://github.com/javan/whenever](Whenever) gem.
+The Cron Helper gem is designed to add a few additional features to cron jobs created with the [Whenever](https://github.com/javan/whenever) gem.
 This features include:
 * File based locking to prevent a given cron from having duplicates running at the same time.
 * Stdout and Stderr logging.
@@ -45,10 +45,12 @@ class HourlyJob < ApplicationJob
   private
 
   def do_some_work
-    raise 'I break quite often'
+    raise 'I am a task that breaks quite often.'
   end
 
   def do_some_other_work
+    puts 'I am a task that loves to talk.'
+    STDERR.puts 'I even like to talk about errors.'
   end
 
   def do_even_more_work
@@ -57,7 +59,7 @@ class HourlyJob < ApplicationJob
 end
 ```
 
-Finally you will schedule your jobs using the [https://github.com/javan/whenever](Whenever) gem.
+Finally you will schedule your jobs using the [Whenever](https://github.com/javan/whenever]) gem.
 Below is an example config/schedule.rb that also forces your jobs to run at a low priority.
 Running crons at a low priority is recommended when your server has other roles (web, app, db, etc).
 
