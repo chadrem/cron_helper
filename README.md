@@ -69,7 +69,7 @@ Running jobs at a low priority is recommended when your server has other roles (
 job_type :runner,  "cd :path && nice -n 20 script/rails runner -e :environment ':task' :output"
 
 every 1.hour do
-  runner('Cron::Hourly.new.run')
+  runner('HourlyJob.new.run')
 end
 ```
 
