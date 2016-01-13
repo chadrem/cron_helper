@@ -1,5 +1,6 @@
-require "cron_helper/version"
+require 'cron_helper/version'
+require 'cron_helper/job'
 
 module CronHelper
-  # Your code goes here...
 end
+
