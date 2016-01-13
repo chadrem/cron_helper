@@ -27,7 +27,7 @@ Or install it yourself as:
 ## Usage
 
 For your typical Rails or Ruby app, you will first want to create your ````ApplicationJob````.
-This is the class that all of your custom crons should inherit from.
+This is the class that all of your custom jobs should inherit from.
 Here you put methods that are shared by all your custom jobs.
 
 ```ruby
@@ -63,7 +63,7 @@ end
 ```
 Finally you will schedule your jobs using the [Whenever](https://github.com/javan/whenever]) gem.
 Below is an example config/schedule.rb that also forces your jobs to run at a low priority.
-Running crons at a low priority is recommended when your server has other roles (web, app, db, etc).
+Running jobs at a low priority is recommended when your server has other roles (web, app, db, etc).
 
 ```ruby
 job_type :runner,  "cd :path && nice -n 20 script/rails runner -e :environment ':task' :output"
