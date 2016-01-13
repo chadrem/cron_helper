@@ -81,7 +81,7 @@ This gives you control over creating new tasks without having to worry about bre
 
 ## Customization
 You can customize where stdout/stderr are sent to by overriding the ````output_handler```` method.
-Normally you will want to put this in ````ApplicationJob```.
+Normally you will want to put this in ```ApplicationJob```.
 
 ```ruby
 class ApplicationJob < CronHelper::Job
