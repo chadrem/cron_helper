@@ -1,10 +1,12 @@
 # CronHelper
 
 The Cron Helper gem is designed to add a few additional features to cron jobs created with the [Whenever](https://github.com/javan/whenever) gem.
-This features include:
-* File based locking to prevent a given cron from having duplicates running at the same time.
-* Stdout and Stderr logging.
-* The concept of "tasks" within a cron job (more on this below) for ordering and exception handling.
+
+Features include:
+* File based locking to prevent jobs from running if they are already running.  This is especially useful if a job takes longer than it should (such as an hourly cron that happens to take two hours to run).
+* Stdout and Stderr interception.
+* The concept of "tasks" within a job (more on this below) for ordering and exception handling.
+* Custom handling of output (write your own email handling, custom logging, alerting, etc).
 
 ## Installation
 
@@ -24,17 +26,18 @@ Or install it yourself as:
 
 ## Usage
 
-For your typical Rails or Ruby app, you will first want to create your ApplicationJob.
+For your typical Rails or Ruby app, you will first want to create your ````ApplicationJob````.
 This is the class that all of your custom crons should inherit from.
+Here you put methods that are shared by all your custom jobs.
 
 ```ruby
 class ApplicationJob < CronHelper::Job
 end
 ```
 
-Next you will create your app specific cron classes.
-The idea is to pick logical names that relate to how they are going to be scheduled.
-Inside of each app specific cron class you will register your tasks.
+Next you will create your app specific job classes.
+The idea is to pick logical names that relate to how they are going to be scheduled and grouped.
+Inside of each class you will register your tasks.
 
 ```ruby
 class HourlyJob < ApplicationJob
@@ -58,6 +61,12 @@ class HourlyJob < ApplicationJob
   end
 end
 ```
+
+#### Notes on tasks
+Think of tasks as methods with exception protection and ordering.
+Tasks are guaranteed to run in the order you register them.
+They are also guaranteed to run even if a previous task encountered an exception.
+This gives you control over creating new tasks without having to worry about breaking old ones.
 
 Finally you will schedule your jobs using the [Whenever](https://github.com/javan/whenever]) gem.
 Below is an example config/schedule.rb that also forces your jobs to run at a low priority.
