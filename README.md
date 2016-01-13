@@ -79,6 +79,19 @@ Tasks are guaranteed to run in the order you register them.
 They are also guaranteed to run even if a previous task encountered an exception.
 This gives you control over creating new tasks without having to worry about breaking old ones.
 
+## Customization
+You can customize where stdout/stderr are sent to by overriding the ````output_handler```` method.
+Normally you will want to put this in ````ApplicationJob```.
+
+```ruby
+class ApplicationJob < CronHelper::Job
+  private
+  output_handler(output)
+    # Log the output to your custom destination (email, DB, SMS alerts, etc).
+  end
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
