@@ -40,7 +40,7 @@ module CronHelper
     private
 
     def output_handler(output)
-      puts output
+      puts output if output.length > 0
     end
 
     def cron_methods
