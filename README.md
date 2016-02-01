@@ -24,7 +24,7 @@ Or install it yourself as:
 
     $ gem install cron_helper
 
-## Usage
+## Jobs
 
 For your typical Rails or Ruby app, you will first want to create your ````ApplicationJob````.
 This is the class that all of your custom jobs should inherit from.
