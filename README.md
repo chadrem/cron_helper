@@ -24,7 +24,9 @@ Or install it yourself as:
 
     $ gem install cron_helper
 
-## Jobs
+## Usage
+
+#### Jobs
 
 For your typical Rails or Ruby app, you will first want to create your ````ApplicationJob````.
 This is the class that all of your custom jobs should inherit from.
@@ -61,6 +63,9 @@ class HourlyJob < ApplicationJob
   end
 end
 ```
+
+#### Scheduling
+
 Finally you will schedule your jobs using the [Whenever](https://github.com/javan/whenever) gem.
 Below is an example config/schedule.rb that also forces your jobs to run at a low priority.
 Running jobs at a low priority is recommended when your server has other roles (web, app, db, etc).
@@ -73,13 +78,13 @@ every 1.hour do
 end
 ```
 
-## Tasks
+#### Tasks
 Think of tasks as methods with exception protection and ordering.
 Tasks are guaranteed to run in the order you register them.
 They are also guaranteed to run even if a previous task encountered an exception.
 This gives you control over creating new tasks without having to worry about breaking old ones.
 
-## Customization
+#### Customization
 You can customize where stdout/stderr are sent to by overriding the ````output_handler```` method.
 Normally you will want to put this in ```ApplicationJob```.
 
