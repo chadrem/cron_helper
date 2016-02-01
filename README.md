@@ -3,10 +3,11 @@
 The Cron Helper gem is designed to add a few additional features to cron jobs created with the [Whenever](https://github.com/javan/whenever) gem.
 
 Features include:
-* File based locking to prevent jobs from running if they are already running.  This is especially useful if a job takes longer than it should (such as an hourly cron that happens to take two hours to run).
-* Stdout and Stderr interception.
-* The concept of "tasks" within a job (more on this below) for ordering and exception handling.
-* Custom handling of output (write your own email handling, custom logging, alerting, etc).
+- *Overlapping job prevention*: File based locking to prevent jobs from running if they are already running.  This is especially useful if - job takes longer than it should (such as an hourly cron that happens to take two hours to run).
+- *Tasks*: To prevent concurrency and handle exceptions in application level code.
+- *Controlled concurrency*: Use taks to limit concurrency and use jobs to encourage it.
+- *Productivity*: Make it easier and faster for developers to add logic units of code to existing cron jobs.
+- *Logging*: Handle job and task output however you want.  This includes exceptions.
 
 ## Installation
 
