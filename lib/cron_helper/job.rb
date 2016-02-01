@@ -70,21 +70,21 @@ module CronHelper
 
       File.open(lock_file_path, File::RDWR|File::CREAT, 0644) do |f|
         unless f.flock(File::LOCK_EX|File::LOCK_NB)
-          puts "CRON FAILED TO LOCK (#{cron_name} at #{Time.zone.now})"
+          puts "CRON_HELPER FAILED TO LOCK (#{job_name} at #{Time.zone.now})"
           return
         end
 
         begin
           yield
         rescue Exception => e
-          puts "CRON EXCEPTION (#{cron_name} at #{Time.zone.now}): #{e.message}\n#{e.backtrace}"
+          puts "CRON_HELPER EXCEPTION (#{job_name} at #{Time.zone.now}): #{e.message}\n#{e.backtrace}"
         ensure
           f.flock(File::LOCK_UN)
         end
       end
     end
 
-    def cron_name
+    def job_name
       return self.class.to_s
     end
 
@@ -93,7 +93,7 @@ module CronHelper
     end
 
     def lock_file_name
-      return "#{cron_name}.lock"
+      return "#{job_name}.lock"
     end
 
     def lock_file_path
