@@ -86,7 +86,7 @@ Normally you will want to put this in ```ApplicationJob```.
 ```ruby
 class ApplicationJob < CronHelper::Job
   private
-  output_handler(output)
+  def output_handler(output)
     # Log the output to your custom destination (email, DB, SMS alerts, etc).
   end
 end
