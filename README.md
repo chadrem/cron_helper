@@ -86,10 +86,20 @@ Normally you will want to put this in ```ApplicationJob```.
 ```ruby
 class ApplicationJob < CronHelper::Job
   private
+
   def output_handler(output)
-    # Log the output to your custom destination (email, DB, SMS alerts, etc).
+    return unless output.length > 0
+
+    # Print all output to STDOUT similar to how any other crontab entry would.
+    puts output
+
+    # Send only output with production exceptions to the rollbar.com service.
+    if Rails.env.production? && output =~ /EXCEPTION/
+      Rollbar.error("cron_helper exception (#{job_name})", output: output)
+    end
   end
 end
+
 ```
 
 ## Development
