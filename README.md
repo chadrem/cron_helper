@@ -41,6 +41,10 @@ Next you will create your app specific job classes.
 The idea is to pick logical names that relate to how they are going to be scheduled and grouped.
 Inside of each class you will register your tasks.
 
+Think of tasks as methods with exception protection and ordering.
+Tasks are guaranteed to run in the order you register them.
+They are also guaranteed to run even if a previous task encountered an exception.
+
 ```ruby
 class HourlyJob < ApplicationJob
   register :do_some_work
@@ -77,12 +81,6 @@ every 1.hour do
   runner('HourlyJob.new.run')
 end
 ```
-
-#### Tasks
-Think of tasks as methods with exception protection and ordering.
-Tasks are guaranteed to run in the order you register them.
-They are also guaranteed to run even if a previous task encountered an exception.
-This gives you control over creating new tasks without having to worry about breaking old ones.
 
 #### Customization
 You can customize where stdout/stderr are sent to by overriding the ````output_handler```` method.
