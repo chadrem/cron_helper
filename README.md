@@ -12,9 +12,8 @@ Why use Cron Helper?
 
 ## Installation
 
-First make sure you install the Whenever gem and test it to make sure it's working. Then proceed with the below:
-
-Add this line to your application's Gemfile:
+First make sure you install the Whenever gem and test it to make sure it's working.
+Then add this line to your application's Gemfile:
 
 ```ruby
 gem 'cron_helper'
