@@ -12,7 +12,7 @@ Why use Cron Helper?
 
 ## Installation
 
-First make sure you install the Whenever gem and test it to make sure it's working.
+First make sure you install the Whenever gem and verify that it's working.
 Then add this line to your application's Gemfile:
 
 ```ruby
