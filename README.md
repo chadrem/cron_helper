@@ -78,7 +78,7 @@ Below is an example config/schedule.rb that also forces your jobs to run at a lo
 Running jobs at a low priority is recommended when your server has other roles (web, app, db, etc).
 
 ```ruby
-job_type :runner,  "cd :path && nice -n 20 script/rails runner -e :environment ':task' :output"
+job_type :runner,  "cd :path && nice -n 20 bundle exec rails runner -e :environment ':task' :output"
 
 every 1.hour do
   runner('HourlyJob.new.run')
