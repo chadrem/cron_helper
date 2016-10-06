@@ -30,12 +30,12 @@ Or install it yourself as:
 
 #### Jobs
 
-For your typical Rails or Ruby app, you will first want to create your ````ApplicationJob````.
+For your typical Rails or Ruby app, you will first want to create your ````ApplicationCronJob````.
 This is the class that all of your custom jobs should inherit from.
 Here you put methods that are shared by all your custom jobs.
 
 ```ruby
-class ApplicationJob < CronHelper::Job
+class ApplicationCronJob < CronHelper::Job
 end
 ```
 
@@ -48,7 +48,7 @@ Tasks are guaranteed to run in the order you register them.
 They are also guaranteed to run even if a previous task encountered an exception.
 
 ```ruby
-class HourlyJob < ApplicationJob
+class HourlyJob < ApplicationCronJob
   register :do_some_work
   register :do_some_other_work
   register :do_even_more_work
